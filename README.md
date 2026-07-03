@@ -62,19 +62,28 @@ resume-app/
 
 ## ⚙️ Environment Variables (`.env`)
 
-Before running the application, you need to create a `.env` file in the **`backend`** directory.
+### Backend `.env`
 
-Rename the template file `backend/.example.env` to `backend/.env` and update it with your local/production settings:
+Rename the template file `backend/.example.env` to `backend/.env` and update it with your settings:
 
 ```env
 # Google Gemini API key for AI generation (https://aistudio.google.com/)
 GEMINI_APIKEY="your-gemini-api-key"
 
 # MongoDB Database Connection String
-ex =  MONGODB_URI="mongodb://localhost:27017/resume-app"
+MONGODB_URI="mongodb://localhost:27017/resume-app"
 
 # Backend server PORT number (defaults to 3000)
 PORT=3000
+```
+
+### Frontend `.env`
+
+Create a `.env` file in the **`frontend`** directory to configure your client-side environment variables:
+
+```env
+# URL pointing to the Backend API Server
+VITE_API_URL=http://localhost:3000/api/v1
 ```
 
 ---
