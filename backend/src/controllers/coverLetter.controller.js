@@ -1,6 +1,6 @@
 import CoverLetter from "../models/coverLetter.js";
 import Profile from "../models/profile.js";
-import { generateCoverLetterAI } from "../services/aiService.js";
+import { generateCoverLetterAI } from "../services/aiservice.js";
 import { buildCoverLetterPDF } from "../services/pdfService.js";
 
 export const getAllCoverLetters = async (req, res) => {
@@ -15,7 +15,7 @@ export const getAllCoverLetters = async (req, res) => {
 export const generateCoverLetter = async (req, res) => {
   try {
     const { profileId, jobDescription } = req.body;
-    
+
     if (!profileId || !jobDescription) {
       return res.status(400).json({ message: "Profile ID and Job Description are required" });
     }
@@ -26,7 +26,7 @@ export const generateCoverLetter = async (req, res) => {
     }
 
     const generatedContent = await generateCoverLetterAI(profile, jobDescription);
-    
+
     const jobTitle = jobDescription.split('\n')[0]?.trim() || 'Target Role';
     const companyMatch = jobDescription.match(/(?:at|for|@)\s+([A-Z][a-zA-Z\s]+)/);
     const company = companyMatch ? companyMatch[1].trim() : 'Target Company';
@@ -79,7 +79,7 @@ export const downloadCoverLetterPDF = async (req, res) => {
     if (!coverLetter) {
       return res.status(404).json({ message: "Cover letter not found" });
     }
-    
+
     // Set headers are handled inside pdfService
     buildCoverLetterPDF(coverLetter, res);
   } catch (error) {

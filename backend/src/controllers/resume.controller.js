@@ -1,6 +1,6 @@
 import Resume from "../models/resume.js";
 import Profile from "../models/profile.js";
-import { generateResumeAI } from "../services/aiService.js";
+import { generateResumeAI } from "../services/aiservice.js";
 import { buildResumePDF } from "../services/pdfService.js";
 
 export const getAllResumes = async (req, res) => {
@@ -15,7 +15,7 @@ export const getAllResumes = async (req, res) => {
 export const generateResume = async (req, res) => {
   try {
     const { profileId, jobDescription } = req.body;
-    
+
     if (!profileId || !jobDescription) {
       return res.status(400).json({ message: "Profile ID and Job Description are required" });
     }
@@ -26,7 +26,7 @@ export const generateResume = async (req, res) => {
     }
 
     const generatedContent = await generateResumeAI(profile, jobDescription);
-    
+
     // Extract job title and company from JD if possible
     const jobTitle = jobDescription.split('\n')[0]?.trim() || 'Target Role';
     const companyMatch = jobDescription.match(/(?:at|for|@)\s+([A-Z][a-zA-Z\s]+)/);
@@ -80,7 +80,7 @@ export const downloadResumePDF = async (req, res) => {
     if (!resume) {
       return res.status(404).json({ message: "Resume not found" });
     }
-    
+
     // Set headers are handled inside pdfService
     buildResumePDF(resume, res);
   } catch (error) {
