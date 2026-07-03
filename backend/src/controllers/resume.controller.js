@@ -1,6 +1,6 @@
 import Resume from "../models/resume.js";
 import Profile from "../models/profile.js";
-import { generateResumeAI } from "../services/aiservice.js";
+import { generateResumeAI } from "../services/aiService.js";
 import { buildResumePDF } from "../services/pdfService.js";
 
 export const getAllResumes = async (req, res) => {

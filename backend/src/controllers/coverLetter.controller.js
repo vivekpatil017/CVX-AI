@@ -1,6 +1,6 @@
 import CoverLetter from "../models/coverLetter.js";
 import Profile from "../models/profile.js";
-import { generateCoverLetterAI } from "../services/aiservice.js";
+import { generateCoverLetterAI } from "../services/aiService.js";
 import { buildCoverLetterPDF } from "../services/pdfService.js";
 
 export const getAllCoverLetters = async (req, res) => {
